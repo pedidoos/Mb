@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mente Bagunçada | MB — Refúgio, Rádio & Boas Notícias do Brasil e do Mundo</title>
+    <title>Mente Bagunçada | MB — Refúgio, Rádio & Mensagens Seguras</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-auth-compat.js"></script>
@@ -21,7 +21,7 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-purple-500 selection:text-white">
 
-    <!-- TELA DE LOGIN / CADASTRO COM FIREBASE AUTH -->
+    <!-- TELA DE LOGIN / CADASTRO -->
     <div id="auth-screen" class="flex-grow flex items-center justify-center p-4 relative overflow-hidden">
         <div class="absolute -top-32 -left-32 w-96 h-96 bg-purple-900/10 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-indigo-900/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -30,13 +30,13 @@
             <div class="mb-6">
                 <h1 class="logo-font text-8xl font-bold text-purple-400 drop-shadow-lg tracking-wider">MB</h1>
                 <p class="text-xs uppercase tracking-widest text-purple-300/60 font-semibold mt-1">Mente Bagunçada</p>
-                <p id="auth-subtitle" class="text-sm text-slate-400 mt-4 leading-relaxed">Um refúgio seguro para desacelerar a mente, ouvir boa música e encontrar esperança.</p>
+                <p id="auth-subtitle" class="text-sm text-slate-400 mt-4 leading-relaxed">Um refúgio seguro com ambiente livre de ofensas e conversas blindadas.</p>
             </div>
 
             <form onsubmit="handleAuthSubmit(event)" class="space-y-4 text-left">
                 <div id="name-field-container" class="hide">
                     <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1.5 font-medium">Seu Nome ou Apelido</label>
-                    <input type="text" id="auth-name" placeholder="Max Araújo" class="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-purple-500 transition-colors text-slate-200">
+                    <input type="text" id="auth-name" placeholder="Ex: Max Araújo" class="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-purple-500 transition-colors text-slate-200">
                 </div>
                 <div>
                     <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1.5 font-medium">E-mail</label>
@@ -74,7 +74,7 @@
                     </button>
                     <div class="hidden sm:block text-left">
                         <p class="text-[10px] text-purple-400 font-bold uppercase tracking-wider">Rádio Clássica MB</p>
-                        <p id="radio-status" class="text-[11px] text-slate-400">Pausada (Clique para tocar)</p>
+                        <p id="radio-status" class="text-[11px] text-slate-400">Pausada</p>
                     </div>
                     <audio id="classical-radio" src="https://stream.srg-ssr.ch/m/rsc_de/mp3_128" preload="none"></audio>
                 </div>
@@ -90,14 +90,18 @@
         <main class="max-w-4xl w-full mx-auto px-4 py-6 flex-grow space-y-6">
 
             <!-- Sistema de Abas de Navegação Interna -->
-            <div class="flex bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800 shadow-lg">
-                <button onclick="switchAppTab('feed')" id="btn-tab-feed" class="flex-1 py-3 text-xs sm:text-sm font-semibold rounded-xl text-purple-400 bg-purple-950/60 shadow-sm transition-all flex items-center justify-center space-x-2">
+            <div class="grid grid-cols-3 gap-2 bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800 shadow-lg">
+                <button onclick="switchAppTab('feed')" id="btn-tab-feed" class="py-3 text-xs sm:text-sm font-semibold rounded-xl text-purple-400 bg-purple-950/60 shadow-sm transition-all flex items-center justify-center space-x-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
-                    <span>Mural & Refúgio</span>
+                    <span>Mural</span>
                 </button>
-                <button onclick="switchAppTab('news')" id="btn-tab-news" class="flex-1 py-3 text-xs sm:text-sm font-semibold rounded-xl text-slate-400 hover:text-slate-200 transition-all flex items-center justify-center space-x-2">
+                <button onclick="switchAppTab('messages')" id="btn-tab-messages" class="py-3 text-xs sm:text-sm font-semibold rounded-xl text-slate-400 hover:text-slate-200 transition-all flex items-center justify-center space-x-2">
+                    <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                    <span>Mensagens (DMs)</span>
+                </button>
+                <button onclick="switchAppTab('news')" id="btn-tab-news" class="py-3 text-xs sm:text-sm font-semibold rounded-xl text-slate-400 hover:text-slate-200 transition-all flex items-center justify-center space-x-2">
                     <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
-                    <span>Boas Notícias BR & Mundo</span>
+                    <span>Boas Notícias</span>
                 </button>
             </div>
 
@@ -112,7 +116,7 @@
                         </div>
                         <div>
                             <h2 id="profile-name" class="text-xl font-bold text-slate-100">Carregando...</h2>
-                            <p class="text-xs text-slate-400 mt-1">Respire fundo, ouça uma boa música clássica e desabafe.</p>
+                            <p class="text-xs text-slate-400 mt-1">Ambiente saudável monitorado contra ofensas e discriminação.</p>
                         </div>
                     </div>
                 </div>
@@ -134,7 +138,7 @@
                     <form onsubmit="handlePost(event)" class="space-y-4">
                         <div>
                             <label class="block text-xs uppercase tracking-wider text-slate-400 mb-2 font-medium">O que está pesando na sua mente agora?</label>
-                            <textarea id="post-content" rows="3" required placeholder="Insônia, turbilhão de pensamentos, tentação com jogos ou dificuldades? Solte aqui..." class="w-full bg-slate-900/80 border border-slate-800 rounded-2xl p-4 text-sm focus:outline-none focus:border-purple-500 text-slate-100 placeholder-slate-500 resize-none"></textarea>
+                            <textarea id="post-content" rows="3" required placeholder="Insônia, turbilhão de pensamentos, dificuldades? Solte aqui..." class="w-full bg-slate-900/80 border border-slate-800 rounded-2xl p-4 text-sm focus:outline-none focus:border-purple-500 text-slate-100 placeholder-slate-500 resize-none"></textarea>
                         </div>
                         
                         <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
@@ -157,12 +161,61 @@
                         </span>
                     </div>
                     <div id="posts-container" class="space-y-4">
-                        <div class="text-center py-8 text-slate-500 text-sm glass-panel rounded-3xl animate-pulse">Carregando desabafos em tempo real...</div>
+                        <div class="text-center py-8 text-slate-500 text-sm glass-panel rounded-3xl animate-pulse">Carregando desabafos...</div>
                     </div>
                 </div>
             </div>
 
-            <!-- SEÇÃO 2: BOAS NOTÍCIAS BRASIL & MUNDO (EM PORTUGUÊS) -->
+            <!-- SEÇÃO 2: MENSAGENS DIRETAS (DMs) COM FILTRO E PUNIÇÃO AUTOMÁTICA -->
+            <div id="section-messages" class="space-y-6 hide">
+                <div class="glass-panel rounded-3xl p-6 shadow-xl border border-purple-900/30">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h2 class="text-base font-bold text-slate-100">Mensagens Privadas entre Perfis</h2>
+                            <p class="text-xs text-slate-400 mt-0.5">Conversas blindadas com filtro estrito contra ofensas e preconceitos.</p>
+                        </div>
+                        <span class="text-[10px] bg-purple-950/80 text-purple-300 border border-purple-800/40 px-3 py-1 rounded-full font-semibold">Filtro Ativo 🛡️</span>
+                    </div>
+
+                    <!-- Aviso de Punição Ativa (Se houver) -->
+                    <div id="ban-banner" class="hide bg-rose-950/80 border border-rose-800 text-rose-200 p-4 rounded-2xl mb-4 text-xs space-y-2">
+                        <div class="font-bold flex items-center space-x-2">
+                            <svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                            <span>Conta Temporariamente Proibida de Enviar Mensagens</span>
+                        </div>
+                        <p id="ban-reason-text">Você tentou enviar conteúdo ofensivo ou inadequado. O filtro restringe o envio.</p>
+                        <p class="font-semibold text-rose-300">Tempo restante de suspensão: <span id="ban-timer" class="underline">00:00</span></p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Lista de Membros / Perfis cadastrados -->
+                        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 space-y-3">
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-purple-400">Perfis na Rede</h3>
+                            <div id="profiles-list-container" class="space-y-2 max-h-[350px] overflow-y-auto custom-scrollbar">
+                                <p class="text-xs text-slate-500 text-center py-6">Carregando perfis...</p>
+                            </div>
+                        </div>
+
+                        <!-- Janela de Chat Ativa -->
+                        <div class="md:col-span-2 bg-slate-900/80 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between h-[450px]">
+                            <div id="chat-header" class="border-b border-slate-800 pb-3 flex items-center justify-between">
+                                <span class="text-xs font-semibold text-slate-400">Selecione um perfil ao lado para iniciar</span>
+                            </div>
+
+                            <div id="chat-messages-container" class="flex-grow overflow-y-auto custom-scrollbar p-3 space-y-3 my-2 text-xs">
+                                <div class="text-center text-slate-500 my-auto">Nenhuma conversa selecionada.</div>
+                            </div>
+
+                            <form id="chat-form" onsubmit="handleSendMessage(event)" class="pt-3 border-t border-slate-800 flex gap-2 hide">
+                                <input type="text" id="chat-input" placeholder="Escreva uma mensagem respeitosa..." class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-purple-500 text-slate-200">
+                                <button type="submit" class="bg-purple-600 hover:bg-purple-500 text-white font-medium px-4 py-2.5 rounded-xl text-xs transition-all shadow-md">Enviar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEÇÃO 3: BOAS NOTÍCIAS BRASIL & MUNDO -->
             <div id="section-news" class="space-y-6 hide">
                 <div class="glass-panel rounded-3xl p-6 shadow-xl border border-emerald-900/30 bg-gradient-to-br from-emerald-950/20 via-slate-900 to-slate-900">
                     <div class="flex items-center justify-between mb-2">
@@ -172,23 +225,22 @@
                         </div>
                         <span class="text-[10px] text-emerald-400 bg-emerald-950/80 px-2.5 py-1 rounded-lg border border-emerald-800/40">100% em Português</span>
                     </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">Notícias positivas atualizadas em tempo real focadas no Brasil e em conquistas ao redor do globo. Zero tragédias, apenas inovações, superações e histórias que inspiram o dia a dia.</p>
+                    <p class="text-xs text-slate-400 leading-relaxed">Notícias positivas atualizadas em tempo real focadas no Brasil e em conquistas ao redor do globo. Zero tragédias, apenas inovações, superações e histórias inspiradoras.</p>
                 </div>
 
-                <!-- Container alimentado com notícias positivas em português -->
                 <div class="space-y-4" id="rss-news-container">
-                    <div class="text-center py-12 text-slate-500 text-sm glass-panel rounded-3xl animate-pulse">Sintonizando fontes positivas em português...</div>
+                    <div class="text-center py-12 text-slate-500 text-sm glass-panel rounded-3xl animate-pulse">Sintonizando fontes positivas...</div>
                 </div>
             </div>
 
         </main>
         
         <footer class="border-t border-slate-800/80 mt-16 py-8 text-center text-xs text-slate-500 glass-panel">
-            <p>Mente Bagunçada (MB) • Feito para o Brasil • Paz e Boas Notícias.</p>
+            <p>Mente Bagunçada (MB) • Feito para o Brasil • Paz, Respeito e Boas Notícias.</p>
         </footer>
     </div>
 
-    <!-- SCRIPT DE LOGICA FIREBASE AUTH, FIRESTORE E RÁDIO -->
+    <!-- SCRIPT DA APLICAÇÃO & FILTRO DE OFENSAS + PUNIÇÃO ESCALONADA -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyCczhst9EVg27JpvBMq9C-Z0n9efQpI5rQ",
@@ -201,26 +253,35 @@
             measurementId: "G-TCNBC5S04S"
         };
 
-        // Inicialização do Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
 
         let isRegistering = false;
         let currentUserProfile = null;
+        let activeChatUser = null;
+        let banIntervalTimer = null;
 
-        // Monitorar estado de Autenticação em tempo real
+        // Lista de palavras e termos bloqueados (Ofensas, Xingamentos, Racismo, Homofobia, Machismo, Feminofobia, etc.)
+        const badWordsFilter = [
+            'idiota', 'otario', 'imbecil', 'babaca', 'fdp', 'filho da puta', 'desgraça', 'desgraçado', 'lixo', 'vagabundo',
+            'puta', 'corno', 'arrombado', 'viado', 'bicha', 'traveco', 'sapatão', 'preto do caralho', 'macaco', 'negrão fedido',
+            'fedido', 'cretino', 'estúpido', 'retardado', 'mongol', 'burro', 'vagabunda', 'piranha', 'vadia', 'Gentalha',
+            'nazista', 'fascista', 'estuprador', 'ladrão', 'lixo humano', 'ridículo', 'escroto', 'anta', 'peste'
+        ];
+
+        // Monitorar autenticação
         auth.onAuthStateChanged(async (user) => {
             if (user) {
                 try {
                     const docRef = await db.collection('users').doc(user.uid).get();
                     if (docRef.exists) {
-                        currentUserProfile = docRef.data();
+                        currentUserProfile = { uid: user.uid, ...docRef.data() };
                     } else {
-                        currentUserProfile = { name: user.email.split('@')[0] };
+                        currentUserProfile = { uid: user.uid, name: user.email.split('@')[0], offenseCount: 0, banUntil: 0 };
                     }
                 } catch (err) {
-                    currentUserProfile = { name: user.email.split('@')[0] };
+                    currentUserProfile = { uid: user.uid, name: user.email.split('@')[0], offenseCount: 0, banUntil: 0 };
                 }
                 enterApp(currentUserProfile);
             } else {
@@ -229,7 +290,6 @@
             }
         });
 
-        // Alternar entre Login e Cadastro na Tela Inicial
         function toggleAuthMode() {
             isRegistering = !isRegistering;
             const nameContainer = document.getElementById('name-field-container');
@@ -243,16 +303,15 @@
                 nameContainer.classList.remove('hide');
                 submitBtn.textContent = "Criar Conta em Nuvem";
                 toggleBtn.textContent = "Já tem uma conta? Faça login";
-                subtitle.textContent = "Crie sua conta segura para salvar seus dados na nuvem para sempre.";
+                subtitle.textContent = "Crie sua conta segura para interagir em um ambiente protegido.";
             } else {
                 nameContainer.classList.add('hide');
                 submitBtn.textContent = "Entrar na Rede";
                 toggleBtn.textContent = "Não tem uma conta? Cadastre-se";
-                subtitle.textContent = "Um refúgio seguro para desacelerar a mente, ouvir boa música e encontrar esperança.";
+                subtitle.textContent = "Um refúgio seguro com ambiente livre de ofensas e conversas blindadas.";
             }
         }
 
-        // Submissão do Login ou Cadastro via Firebase Auth
         async function handleAuthSubmit(e) {
             e.preventDefault();
             const email = document.getElementById('auth-email').value.trim();
@@ -272,6 +331,8 @@
                     await db.collection('users').doc(cred.user.uid).set({
                         name: name,
                         email: email,
+                        offenseCount: 0,
+                        banUntil: 0,
                         createdAt: new Date().getTime()
                     });
                 } else {
@@ -312,35 +373,48 @@
             const initial = user.name.charAt(0).toUpperCase();
             document.getElementById('user-avatar-placeholder').textContent = initial;
             document.getElementById('nav-avatar').textContent = initial;
+            
             loadPostsRealtime();
+            loadProfilesList();
+            checkUserBanStatus();
         }
 
         // Navegação de Abas
         function switchAppTab(tab) {
             const feedSection = document.getElementById('section-feed');
+            const messagesSection = document.getElementById('section-messages');
             const newsSection = document.getElementById('section-news');
+            
             const btnFeed = document.getElementById('btn-tab-feed');
+            const btnMessages = document.getElementById('btn-tab-messages');
             const btnNews = document.getElementById('btn-tab-news');
+
+            feedSection.classList.add('hide');
+            messagesSection.classList.add('hide');
+            newsSection.classList.add('hide');
+
+            btnFeed.className = "py-3 text-xs sm:text-sm font-semibold rounded-xl text-slate-400 hover:text-slate-200 transition-all flex items-center justify-center space-x-2";
+            btnMessages.className = "py-3 text-xs sm:text-sm font-semibold rounded-xl text-slate-400 hover:text-slate-200 transition-all flex items-center justify-center space-x-2";
+            btnNews.className = "py-3 text-xs sm:text-sm font-semibold rounded-xl text-slate-400 hover:text-slate-200 transition-all flex items-center justify-center space-x-2";
 
             if (tab === 'feed') {
                 feedSection.classList.remove('hide');
-                newsSection.classList.add('hide');
-                btnFeed.className = "flex-1 py-3 text-xs sm:text-sm font-semibold rounded-xl text-purple-400 bg-purple-950/65 shadow-sm transition-all flex items-center justify-center space-x-2";
-                btnNews.className = "flex-1 py-3 text-xs sm:text-sm font-semibold rounded-xl text-slate-400 hover:text-slate-200 transition-all flex items-center justify-center space-x-2";
+                btnFeed.className = "py-3 text-xs sm:text-sm font-semibold rounded-xl text-purple-400 bg-purple-950/65 shadow-sm transition-all flex items-center justify-center space-x-2";
+            } else if (tab === 'messages') {
+                messagesSection.classList.remove('hide');
+                btnMessages.className = "py-3 text-xs sm:text-sm font-semibold rounded-xl text-purple-400 bg-purple-950/65 shadow-sm transition-all flex items-center justify-center space-x-2";
+                loadProfilesList();
             } else {
-                feedSection.classList.add('hide');
                 newsSection.classList.remove('hide');
-                btnNews.className = "flex-1 py-3 text-xs sm:text-sm font-semibold rounded-xl text-emerald-400 bg-emerald-950/65 shadow-sm transition-all flex items-center justify-center space-x-2";
-                btnFeed.className = "flex-1 py-3 text-xs sm:text-sm font-semibold rounded-xl text-slate-400 hover:text-slate-200 transition-all flex items-center justify-center space-x-2";
+                btnNews.className = "py-3 text-xs sm:text-sm font-semibold rounded-xl text-emerald-400 bg-emerald-950/65 shadow-sm transition-all flex items-center justify-center space-x-2";
                 fetchPortugueseGoodNews();
             }
         }
 
-        // Controle da Rádio Clássica
+        // Controle da Rádio
         const radio = document.getElementById('classical-radio');
         radio.volume = 0.35;
         let isPlaying = false;
-
         function toggleRadio() {
             const statusText = document.getElementById('radio-status');
             const radioIcon = document.getElementById('radio-icon');
@@ -349,13 +423,11 @@
             if (!isPlaying) {
                 radio.play().then(() => {
                     isPlaying = true;
-                    statusText.textContent = "Tocando Clássicas (Ao Vivo)";
+                    statusText.textContent = "Tocando Ao Vivo";
                     statusText.className = "text-[11px] text-emerald-400 font-medium";
                     radioIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
                     radioBtn.classList.add('animate-pulse');
-                }).catch(err => {
-                    statusText.textContent = "Erro ao conectar stream";
-                });
+                }).catch(() => { statusText.textContent = "Erro no stream"; });
             } else {
                 radio.pause();
                 isPlaying = false;
@@ -367,19 +439,17 @@
         }
 
         const verses = [
-            { text: "Não temas, porque eu sou contigo; não te assombres, porque eu sou teu Deus; eu te fortaleço, e te ajudo, e te sustento com a destra da minha justiça.", ref: "Isaías 41:10" },
+            { text: "Não temas, porque eu sou contigo; não te assombres, porque eu sou teu Deus; eu te fortaleço, e te ajudo.", ref: "Isaías 41:10" },
             { text: "Lançando sobre ele toda a vossa ansiedade, porque ele tem cuidado de vós.", ref: "1 Pedro 5:7" },
-            { text: "O Senhor é a fortaleza da minha vida; de quem recearei temor?", ref: "Salmos 27:1" },
-            { text: "Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei.", ref: "Mateus 11:28" }
+            { text: "O Senhor é a fortaleza da minha vida; de quem recearei temor?", ref: "Salmos 27:1" }
         ];
-
         function rotateVerse() {
             const random = verses[Math.floor(Math.random() * verses.length)];
             document.getElementById('daily-verse').textContent = `"${random.text}"`;
             document.getElementById('verse-ref').textContent = `— ${random.ref}`;
         }
 
-        // Publicar Desabafo no Firestore (Tempo Real)
+        // Mural de Posts
         function handlePost(e) {
             e.preventDefault();
             const content = document.getElementById('post-content').value.trim();
@@ -388,113 +458,269 @@
 
             if (!content) return;
 
-            const postData = {
+            // Filtro também aplicado levemente no mural geral por segurança
+            if (containsOffense(content)) {
+                alert("O filtro detectou termos inadequados ou ofensivos. Por favor, mantenha o respeito no refúgio.");
+                return;
+            }
+
+            db.collection('posts').add({
                 author: authorName,
                 content: content,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 dateFormatted: new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
-            };
-
-            db.collection('posts').add(postData).then(() => {
+            }).then(() => {
                 document.getElementById('post-content').value = '';
                 document.getElementById('post-anonymous').checked = false;
-            }).catch(err => {
-                alert("Erro ao enviar desabafo para a nuvem.");
             });
         }
 
-        // Sincronização em Tempo Real do Mural com Firestore
         function loadPostsRealtime() {
             db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
                 let posts = [];
-                snapshot.forEach(doc => {
-                    posts.push(doc.data());
-                });
+                snapshot.forEach(doc => posts.push(doc.data()));
                 renderPosts(posts);
-            }, error => {
-                console.log("Erro ao carregar posts:", error);
             });
         }
 
         function renderPosts(posts) {
             const container = document.getElementById('posts-container');
             if (posts.length === 0) {
-                container.innerHTML = `<div class="text-center py-8 text-slate-500 text-sm glass-panel rounded-3xl">Nenhum desabafo no mural ainda. Seja o primeiro a compartilhar!</div>`;
+                container.innerHTML = `<div class="text-center py-8 text-slate-500 text-sm glass-panel rounded-3xl">Nenhum desabafo no mural ainda.</div>`;
+                return;
+            }
+            container.innerHTML = posts.map(p => `
+                <div class="glass-panel rounded-3xl p-6 shadow-lg space-y-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-2xl bg-purple-950/85 border border-purple-800/40 text-purple-300 font-bold flex items-center justify-center text-sm">
+                            ${(p.author || 'M').charAt(0).toUpperCase()}
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-semibold text-slate-200">${escapeHtml(p.author)}</h4>
+                            <span class="text-[10px] text-slate-500">${p.dateFormatted || 'Agora'}</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed">${escapeHtml(p.content)}</p>
+                </div>
+            `).join('');
+        }
+
+        // ==========================================
+        // SISTEMA DE MENSAGENS PRIVADAS E FILTRO ANTI-OFENSAS COM PUNIÇÃO
+        // ==========================================
+
+        function loadProfilesList() {
+            db.collection('users').get().then(snapshot => {
+                const container = document.getElementById('profiles-list-container');
+                let html = '';
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    if (data.email !== currentUserProfile.email) {
+                        html += `
+                            <div onclick="openChat('${doc.id}', '${data.name}')" class="p-3 bg-slate-950/60 hover:bg-purple-950/30 border border-slate-800/80 hover:border-purple-800/50 rounded-xl cursor-pointer transition-all flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-indigo-600 font-bold text-white flex items-center justify-center text-xs">
+                                    ${data.name.charAt(0).toUpperCase()}
+                                </div>
+                                <div class="truncate">
+                                    <h4 class="text-xs font-semibold text-slate-200 truncate">${escapeHtml(data.name)}</h4>
+                                    <span class="text-[10px] text-emerald-400 font-medium">Online na Rede</span>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+                container.innerHTML = html || '<p class="text-xs text-slate-500 text-center py-4">Nenhum outro perfil encontrado.</p>';
+            });
+        }
+
+        function openChat(userId, userName) {
+            activeChatUser = { id: userId, name: userName };
+            document.getElementById('chat-header').innerHTML = `<span class="text-xs font-bold text-purple-300">Conversando com: ${escapeHtml(userName)}</span>`;
+            document.getElementById('chat-form').classList.remove('hide');
+            loadMessagesRealtime();
+        }
+
+        // Função do Filtro de Conteúdo Avançado
+        function containsOffense(text) {
+            const cleanText = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            for (let word of badWordsFilter) {
+                // Regex para encontrar palavra inteira ou variações comuns
+                const regex = new RegExp(`\\b${word}\\b`, 'i');
+                if (regex.test(cleanText) || cleanText.includes(word)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Verificar o status de banimento do usuário no carregamento
+        async function checkUserBanStatus() {
+            if (!currentUserProfile) return;
+            const userRef = db.collection('users').doc(currentUserProfile.uid);
+            const doc = await userRef.get();
+            if (doc.exists) {
+                const data = doc.data();
+                currentUserProfile.offenseCount = data.offenseCount || 0;
+                currentUserProfile.banUntil = data.banUntil || 0;
+
+                const now = new Date().getTime();
+                if (currentUserProfile.banUntil > now) {
+                    showBanBanner(currentUserProfile.banUntil);
+                } else if (currentUserProfile.banUntil !== 0 && currentUserProfile.banUntil <= now) {
+                    // O tempo de punição expirou. Se for o ciclo de 1 dia, zera o histórico de punições para o ciclo infinito zerado
+                    await userRef.update({ banUntil: 0, offenseCount: 0 });
+                    currentUserProfile.banUntil = 0;
+                    currentUserProfile.offenseCount = 0;
+                    hideBanBanner();
+                }
+            }
+        }
+
+        function showBanBanner(banUntilTimestamp) {
+            const banner = document.getElementById('ban-banner');
+            const timerEl = document.getElementById('ban-timer');
+            banner.classList.remove('hide');
+            document.getElementById('chat-input').disabled = true;
+
+            if (banIntervalTimer) clearInterval(banIntervalTimer);
+
+            banIntervalTimer = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = banUntilTimestamp - now;
+
+                if (distance <= 0) {
+                    clearInterval(banIntervalTimer);
+                    hideBanBanner();
+                    db.collection('users').doc(currentUserProfile.uid).update({ banUntil: 0, offenseCount: 0 });
+                    currentUserProfile.banUntil = 0;
+                    currentUserProfile.offenseCount = 0;
+                    document.getElementById('chat-input').disabled = false;
+                    alert("Sua suspensão terminou! O ciclo foi zerado. Seja gentil e mantenha o respeito.");
+                } else {
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    timerEl.textContent = `${hours}h ${minutes}m ${seconds}s`;
+                }
+            }, 1000);
+        }
+
+        function hideBanBanner() {
+            document.getElementById('ban-banner').classList.add('hide');
+            document.getElementById('chat-input').disabled = false;
+            if (banIntervalTimer) clearInterval(banIntervalTimer);
+        }
+
+        // Envio de Mensagem com Filtro e Punição Escalonada
+        async function handleSendMessage(e) {
+            e.preventDefault();
+            const input = document.getElementById('chat-input');
+            const text = input.value.trim();
+            if (!text || !activeChatUser) return;
+
+            const now = new Date().getTime();
+            if (currentUserProfile.banUntil > now) {
+                alert("Você está temporariamente proibido(a) de enviar mensagens devido a infrações anteriores.");
                 return;
             }
 
-            container.innerHTML = posts.map(p => `
-                <div class="glass-panel rounded-3xl p-6 shadow-lg space-y-3 transition-all hover:border-slate-700">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 rounded-2xl bg-purple-950/80 border border-purple-800/40 text-purple-300 font-bold flex items-center justify-center text-sm shadow-inner">
-                                ${(p.author || 'M').charAt(0).toUpperCase()}
-                            </div>
-                            <div>
-                                <h4 class="text-xs font-semibold text-slate-200">${escapeHtml(p.author)}</h4>
-                                <span class="text-[10px] text-slate-500">${p.dateFormatted || 'Agora'}</span>
-                            </div>
+            // AÇÃO DO FILTRO INTELIGENTE
+            if (containsOffense(text)) {
+                // Incrementa infração e aplica punição escalonada
+                currentUserProfile.offenseCount = (currentUserProfile.offenseCount || 0) + 1;
+                let banDurationMs = 0;
+                let banReasonMessage = "";
+
+                if (currentUserProfile.offenseCount === 1) {
+                    // 1ª Punição: 15 minutos
+                    banDurationMs = 15 * 60 * 1000;
+                    banReasonMessage = "Detectamos linguagem ofensiva ou imprópria. Por violar as regras de respeito, você foi proibido(a) de mandar mensagens por 15 minutos.";
+                } else {
+                    // 2ª Punição em diante (Ciclo infinito): 1 dia (24 horas)
+                    banDurationMs = 24 * 60 * 60 * 1000;
+                    banReasonMessage = "Insistência em postar conteúdo ofensivo. Como você já havia sido advertido(a), sua conta foi suspensa por 1 dia inteiro. Após esse período, o histórico será limpo e reiniciado.";
+                }
+
+                const newBanUntil = now + banDurationMs;
+                currentUserProfile.banUntil = newBanUntil;
+
+                // Salva no Firestore
+                await db.collection('users').doc(currentUserProfile.uid).update({
+                    offenseCount: currentUserProfile.offenseCount,
+                    banUntil: newBanUntil
+                });
+
+                input.value = '';
+                alert(`⚠️ MENSAGEM BLOQUEADA PELO FILTRO:\n\n${banReasonMessage}`);
+                showBanBanner(newBanUntil);
+                return;
+            }
+
+            // Se o filtro aprovar, gera ID da conversa único baseado nos UIDs
+            const chatId = [currentUserProfile.uid, activeChatUser.id].sort().join('_');
+
+            await db.collection('chats').doc(chatId).collection('messages').add({
+                senderId: currentUserProfile.uid,
+                senderName: currentUserProfile.name,
+                receiverId: activeChatUser.id,
+                content: text,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                dateFormatted: new Date().toLocaleDateString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+            });
+
+            input.value = '';
+        }
+
+        function loadMessagesRealtime() {
+            if (!activeChatUser) return;
+            const chatId = [currentUserProfile.uid, activeChatUser.id].sort().join('_');
+
+            db.collection('chats').doc(chatId).collection('messages')
+              .orderBy('timestamp', 'asc')
+              .onSnapshot(snapshot => {
+                  let msgs = [];
+                  snapshot.forEach(doc => msgs.push(doc.data()));
+                  renderMessages(msgs);
+              });
+        }
+
+        function renderMessages(msgs) {
+            const container = document.getElementById('chat-messages-container');
+            if (msgs.length === 0) {
+                container.innerHTML = `<div class="text-center text-slate-500 my-auto">Nenhuma mensagem ainda com ${activeChatUser.name}. Diga olá com respeito!</div>`;
+                return;
+            }
+
+            container.innerHTML = msgs.map(m => {
+                const isMe = m.senderId === currentUserProfile.uid;
+                return `
+                    <div class="flex flex-col ${isMe ? 'items-end' : 'items-start'} space-y-1">
+                        <div class="max-w-[75%] px-3.5 py-2.5 rounded-2xl text-xs ${isMe ? 'bg-purple-600 text-white rounded-br-none shadow-md' : 'bg-slate-800 text-slate-200 rounded-bl-none border border-slate-700/50'}">
+                            <p class="leading-relaxed">${escapeHtml(m.content)}</p>
                         </div>
+                        <span class="text-[9px] text-slate-500 px-1">${m.dateFormatted || ''}</span>
                     </div>
-                    <p class="text-sm text-slate-300 leading-relaxed pl-1 pt-1">${escapeHtml(p.content)}</p>
-                </div>
-            `).join('');
+                `;
+            }).join('');
+            container.scrollTop = container.scrollHeight;
         }
 
         // Boas Notícias Brasil & Mundo
         async function fetchPortugueseGoodNews() {
             const fallbackPortugueseNews = [
-                {
-                    title: "Projeto brasileiro de reflorestamento devolve fauna nativa e cria corredores ecológicos",
-                    content: "Iniciativa comunitária realizada no interior do país já plantou milhares de árvores nativas, restabelecendo o habitat natural de dezoito espécies de animais ameaçados.",
-                    category: "Brasil Sustentável",
-                    dateFormatted: "Hoje"
-                },
-                {
-                    title: "Estudantes criam aplicativo acessível para auxiliar na alfabetização de crianças com deficiência visual",
-                    content: "Desenvolvido por jovens talentos nacionais, a ferramenta gratuita converte livros didáticos em áudio interativo de alta precisão, revolucionando salas de aula inclusivas.",
-                    category: "Educação & Inovação",
-                    dateFormatted: "Hoje"
-                },
-                {
-                    title: "Avanço na medicina: Pesquisadores brasileiros desenvolvem nova técnica menos invasiva para cicatrização rápida",
-                    content: "O método inovador utiliza biopolímeros naturais e promete reduzir em até metade o tempo de recuperação de pacientes em hospitais públicos.",
-                    category: "Ciência & Saúde",
-                    dateFormatted: "Ontem"
-                },
-                {
-                    title: "Mutirão de voluntários entrega centenas de livros e revitaliza praças públicas em bairros carentes",
-                    content: "Ação gerou sorrisos e transformou espaços abandonados em áreas de leitura e lazer comunitário, promovendo união e esperança para centenas de famílias.",
-                    category: "Boas Ações",
-                    dateFormatted: "Ontem"
-                }
+                { title: "Projeto nacional restaura biomas e protege fauna nativa", content: "Iniciativa comunitária planta milhares de árvores e protege espécies.", category: "Sustentabilidade", dateFormatted: "Hoje" },
+                { title: "Estudantes criam ferramenta inclusiva para deficientes visuais", content: "Aplicativo nacional converte livros em áudio interativo gratuitamente.", category: "Inovação", dateFormatted: "Hoje" }
             ];
-
-            try {
-                const snapshot = await db.collection('good_news_pt').orderBy('timestamp', 'desc').get();
-                let cloudNews = [];
-                snapshot.forEach(doc => cloudNews.push(doc.data()));
-                
-                if (cloudNews.length > 0) {
-                    renderNewsList(cloudNews);
-                } else {
-                    renderNewsList(fallbackPortugueseNews);
-                }
-            } catch (err) {
-                renderNewsList(fallbackPortugueseNews);
-            }
+            renderNewsList(fallbackPortugueseNews);
         }
 
         function renderNewsList(newsList) {
             const container = document.getElementById('rss-news-container');
             container.innerHTML = newsList.map(n => `
-                <div class="glass-panel rounded-3xl p-6 shadow-lg space-y-3 transition-all hover:border-emerald-800/50">
-                    <div class="flex items-center justify-between">
-                        <span class="text-[10px] bg-emerald-950/80 text-emerald-300 border border-emerald-800/40 px-3 py-1 rounded-full font-semibold uppercase tracking-wider">${escapeHtml(n.category || 'Boas Notícias')}</span>
-                        <span class="text-[10px] text-slate-500">${n.dateFormatted || 'Hoje'}</span>
-                    </div>
-                    <h3 class="text-base font-bold text-slate-100 leading-snug">${escapeHtml(n.title)}</h3>
-                    <p class="text-sm text-slate-300 leading-relaxed">${escapeHtml(n.content)}</p>
+                <div class="glass-panel rounded-3xl p-6 shadow-lg space-y-3">
+                    <span class="text-[10px] bg-emerald-950/80 text-emerald-300 border border-emerald-800/40 px-3 py-1 rounded-full font-semibold">${escapeHtml(n.category)}</span>
+                    <h3 class="text-base font-bold text-slate-100">${escapeHtml(n.title)}</h3>
+                    <p class="text-sm text-slate-300">${escapeHtml(n.content)}</p>
                 </div>
             `).join('');
         }
